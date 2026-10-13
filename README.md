@@ -50,11 +50,18 @@ The contact form is a Server Action (`src/app/contact/actions.ts`) that sends th
 - Old WordPress URLs (`/portfolio_page/<old-slug>/`) 308-redirect to the new pages (`next.config.ts`).
 - `sitemap.xml`, `robots.txt`, a generated Open Graph image and a Person JSON-LD block are included.
 
-## Deploy (not done yet)
+## Deploy
 
-The site needs a Node.js host because of the contact form Server Action and image optimisation. Options:
+- **Review deployment:** https://zolfar.vercel.app (Vercel project `zolfar`, team `rahman-shafiees-projects`).
+- **GitHub:** https://github.com/Quantutech/zolfar-site (public). Pushing to `main` redeploys production automatically. `vercel.json` pins the Next.js preset.
+- **Environment:** `NEXT_PUBLIC_SITE_URL=https://zolfar.vercel.app` (production + preview).
+- **Search engines:** any URL other than `https://zolfar.de` serves `noindex` and a disallow-all `robots.txt`, so the review site stays out of search.
 
-- **Hostinger:** a Node.js web app on the existing Business plan.
-- **Vercel.**
+Going live on zolfar.de:
 
-Switching zolfar.de from WordPress to this site is a DNS and hosting change that needs the owner's go-ahead. Set `NEXT_PUBLIC_SITE_URL` and the SMTP variables in the host's environment.
+1. Add the domain to the Vercel project.
+2. Set `NEXT_PUBLIC_SITE_URL=https://zolfar.de`, which turns indexing on.
+3. Add the SMTP variables from `.env.example`.
+4. Point DNS at Vercel.
+
+The DNS switch replaces the WordPress site, so it needs the owner's go-ahead.
