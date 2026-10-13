@@ -1,0 +1,250 @@
+.open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.open img {
+  width: 100%;
+  height: auto;
+}
+
+/* ——— cover, staged ——— */
+.cover {
+  position: relative;
+  margin: 0;
+}
+
+.cover_drafting {
+  padding: clamp(14px, 2.4vw, 32px);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+    color-mix(in oklab, var(--aqua) 30%, var(--paper));
+  border: 1.5px solid var(--ink);
+}
+
+.cover_collage {
+  width: min(100%, 880px);
+  margin-inline: auto;
+  transform: rotate(-1.6deg);
+  box-shadow:
+    0 2px 0 color-mix(in oklab, var(--ink) 10%, transparent),
+    0 40px 60px -30px color-mix(in oklab, var(--ink) 55%, transparent);
+}
+
+.cover_wall,
+.cover_table {
+  width: min(100%, 980px);
+  margin-inline: auto;
+  box-shadow: 0 40px 60px -34px color-mix(in oklab, var(--ink) 55%, transparent);
+}
+
+.sheet {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 6px 10px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.68rem;
+}
+
+.tape {
+  position: absolute;
+  width: 140px;
+  height: 34px;
+  background: color-mix(in oklab, var(--saffron) 55%, transparent);
+  mix-blend-mode: multiply;
+  clip-path: polygon(0 8%, 6% 0, 12% 10%, 20% 2%, 100% 0, 96% 50%, 100% 100%, 8% 96%, 0 100%, 4% 50%);
+}
+
+.tapeA {
+  top: -14px;
+  left: 8%;
+  transform: rotate(-8deg);
+}
+
+.tapeB {
+  right: 6%;
+  bottom: -12px;
+  transform: rotate(6deg);
+  background: color-mix(in oklab, var(--aqua) 60%, transparent);
+}
+
+/* ——— gallery ——— */
+.gallery {
+  display: grid;
+  gap: clamp(24px, 4vw, 56px);
+  margin: clamp(48px, 8vw, 110px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  transform: rotate(var(--tilt));
+  transition: transform 0.6s var(--ease-paper);
+}
+
+.item:hover {
+  transform: rotate(0deg) scale(1.015);
+}
+
+.caption {
+  margin: 12px 0 0;
+  opacity: 0.8;
+}
+
+/* drafting: sheets stacked on graph paper */
+.drafting .item {
+  padding: clamp(12px, 2vw, 24px);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+    color-mix(in oklab, var(--aqua) 22%, var(--paper));
+  border: 1.5px solid var(--ink);
+}
+
+.drafting .item:hover {
+  transform: none;
+}
+
+@media (min-width: 900px) {
+  .drafting {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .drafting .item:only-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* wall + table: pinned prints */
+.wall,
+.table {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  align-items: start;
+}
+
+.wall .item,
+.table .item {
+  padding: 12px 12px 14px;
+  background: #fffaf2;
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--ink) 12%, transparent),
+    0 24px 40px -26px color-mix(in oklab, var(--ink) 60%, transparent);
+}
+
+.table .item:nth-child(3n + 2) {
+  margin-top: 48px;
+}
+
+.pin {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff 0 15%, var(--vermilion) 30%, color-mix(in oklab, var(--vermilion) 60%, black) 100%);
+  box-shadow: 2px 3px 3px color-mix(in oklab, var(--ink) 35%, transparent);
+}
+
+.item:nth-child(even) .pin {
+  background: radial-gradient(circle at 35% 35%, #fff 0 15%, var(--ultramarine) 30%, color-mix(in oklab, var(--ultramarine) 60%, black) 100%);
+}
+
+/* collage: free cut-outs */
+.collage {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+
+/* ——— viewer ——— */
+.viewer {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: color-mix(in oklab, var(--ink) 96%, black);
+  color: var(--paper);
+}
+
+.viewer::backdrop {
+  background: color-mix(in oklab, var(--ink) 80%, transparent);
+}
+
+.viewer[open] {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.stage {
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.stage[data-zoom="true"] {
+  cursor: zoom-out;
+}
+
+.stageImage {
+  position: absolute;
+  inset: 3vh 3vw;
+  width: calc(100% - 6vw);
+  height: calc(100% - 6vh);
+  object-fit: contain;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.stage[data-zoom="true"] .stageImage {
+  transform: scale(2.4);
+  transition: transform 0.45s var(--ease-out), transform-origin 0.1s linear;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px var(--gutter) 18px;
+}
+
+.bar p {
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.controls button {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--paper);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paper);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.controls button:hover {
+  background: var(--orchid);
+  color: var(--ink);
+  border-color: var(--orchid);
+}

@@ -1,0 +1,28 @@
+.page {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  min-height: 80svh;
+  align-content: center;
+  padding-top: var(--header-h);
+  text-align: center;
+}
+
+.page p {
+  margin: 0;
+}
+
+.mark {
+  width: 70px;
+  color: var(--ink);
+  transform: rotate(14deg);
+}
+
+.title {
+  max-width: 14ch;
+  font-size: var(--step-4);
+}
+
+.link {
+  font-weight: 700;
+}

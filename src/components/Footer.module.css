@@ -1,0 +1,93 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(80px, 14vw, 200px);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.cta {
+  display: block;
+  padding: clamp(56px, 10vw, 140px) var(--gutter) clamp(40px, 6vw, 80px);
+  text-align: center;
+  text-decoration: none;
+}
+
+.small {
+  display: block;
+  font-size: var(--step-2);
+  font-style: italic;
+  color: var(--orchid);
+}
+
+.big {
+  display: inline-block;
+  font-size: clamp(4.4rem, 1rem + 16vw, 16rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  transition:
+    transform 0.6s var(--ease-paper),
+    color 0.3s;
+}
+
+.bang {
+  display: inline-block;
+  color: var(--vermilion);
+  transition: transform 0.6s var(--ease-paper);
+}
+
+.cta:hover .big {
+  transform: rotate(-3deg) scale(1.03);
+  color: var(--aqua);
+}
+
+.cta:hover .bang {
+  transform: rotate(18deg) translateY(-0.08em);
+}
+
+/* a strip of her diamond lattice */
+.band {
+  height: 56px;
+  background:
+    linear-gradient(55deg, transparent 47%, var(--aqua) 47% 53%, transparent 53%) 0 0 / 40px 56px,
+    linear-gradient(-55deg, transparent 47%, var(--orchid) 47% 53%, transparent 53%) 0 0 / 40px 56px;
+  opacity: 0.85;
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  padding-block: 28px 36px;
+}
+
+.base p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.mark {
+  width: 30px;
+  color: var(--paper);
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(var(--vermilion), var(--vermilion)) 0 100% / 0 2px no-repeat;
+  transition: background-size 0.4s var(--ease-out);
+}
+
+.links a:hover {
+  background-size: 100% 2px;
+}

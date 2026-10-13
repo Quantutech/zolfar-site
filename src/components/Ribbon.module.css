@@ -1,0 +1,71 @@
+/* The band is tilted and wider than the page; clip it sideways only so it never causes horizontal scroll. */
+.frame {
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-block: 2vw;
+}
+
+.ribbon {
+  position: relative;
+  overflow: hidden;
+  padding-block: 18px;
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(-2deg);
+  margin-inline: -2vw;
+  border-block: 6px double var(--orchid);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: run 38s linear infinite;
+}
+
+.ribbon:hover .track {
+  animation-play-state: paused;
+}
+
+.run {
+  display: flex;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.item:nth-child(3n + 1) {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.knot {
+  width: 16px;
+  height: 22px;
+  background: var(--aqua);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.item:nth-child(even) .knot {
+  background: var(--orchid);
+}
+
+.item:nth-child(3n) .knot {
+  background: var(--vermilion);
+}
+
+@keyframes run {
+  to {
+    transform: translateX(-50%);
+  }
+}

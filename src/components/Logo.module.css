@@ -1,0 +1,97 @@
+.logo {
+  height: auto;
+  overflow: visible;
+}
+
+.outer {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 24;
+  stroke-miterlimit: 10;
+}
+
+.inner {
+  fill: currentColor;
+  transform-origin: 825px 996px;
+}
+
+.glyph path {
+  fill: none;
+  stroke: var(--orchid);
+  stroke-width: 24;
+  stroke-miterlimit: 10;
+}
+
+.dot {
+  fill: var(--orchid);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.line .inner {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 18;
+}
+
+/* Pen-drawn entrance: outline, then the inner field, then the glyph. */
+.animate .outer {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s var(--ease-out) 0.1s forwards;
+}
+
+.animate .inner {
+  transform: scale(0);
+  animation: grow 0.9s var(--ease-paper) 1.1s forwards;
+}
+
+.animate .glyph path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.7s var(--ease-out) forwards;
+}
+
+.animate .glyph path:nth-child(1) {
+  animation-delay: 1.6s;
+}
+
+.animate .glyph path:nth-child(2) {
+  animation-delay: 1.9s;
+}
+
+.animate .glyph path:nth-child(3) {
+  animation-delay: 1.8s;
+}
+
+.animate .glyph path:nth-child(4) {
+  animation-delay: 2.1s;
+}
+
+.animate .dot {
+  opacity: 0;
+  animation: pop 0.4s var(--ease-paper) 2.3s forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes grow {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

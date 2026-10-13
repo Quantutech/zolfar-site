@@ -1,0 +1,262 @@
+/* ——— hero ——— */
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: calc(var(--header-h) + 8px) var(--gutter) 28px;
+  overflow: hidden;
+}
+
+.cornerL,
+.cornerR {
+  position: absolute;
+  top: calc(18px + var(--menu-w) / 2 - 0.6em);
+  margin: 0;
+  opacity: 0.75;
+}
+
+.cornerL {
+  left: calc(var(--gutter) + var(--logo-w) + 24px);
+}
+
+.cornerR {
+  right: calc(var(--gutter) + var(--menu-w) + 24px);
+  text-align: right;
+}
+
+.center {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: clamp(10px, 2vw, 24px);
+}
+
+.heroLogo {
+  width: clamp(64px, 3rem + 6.4vw, 260px);
+  color: var(--ink);
+}
+
+.sub {
+  margin: 0;
+  font-size: var(--step-3);
+  font-style: italic;
+  opacity: 0;
+  animation: fade 1s var(--ease-out) 1.9s forwards;
+}
+
+.amp {
+  color: var(--vermilion);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.statement {
+  position: relative;
+  align-self: end;
+  max-width: 22ch;
+  margin: 0;
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 0;
+  animation: fade 1s var(--ease-out) 2.3s forwards;
+}
+
+.statementLabel {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 400;
+  color: var(--vermilion);
+}
+
+.scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 30px;
+  writing-mode: vertical-rl;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.scroll span {
+  display: inline-block;
+  margin-top: 8px;
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (max-width: 720px) {
+  .cornerL {
+    display: none;
+  }
+}
+
+/* the two corner notes only fit side by side on wide screens */
+@media (max-width: 1099px) {
+  .cornerR {
+    display: none;
+  }
+}
+
+/* ——— intro ——— */
+.intro {
+  display: grid;
+  gap: clamp(28px, 5vw, 64px);
+  padding-block: clamp(96px, 14vw, 200px) clamp(64px, 10vw, 140px);
+}
+
+@media (min-width: 960px) {
+  .intro {
+    grid-template-columns: 1fr 300px;
+    align-items: end;
+  }
+}
+
+.introTitle {
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* highlighter scraps: box-shadow widens the mark without pushing punctuation away */
+.introTitle mark {
+  background: var(--hl);
+  box-shadow:
+    0.1em 0 0 var(--hl),
+    -0.1em 0 0 var(--hl);
+  color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hlAqua {
+  --hl: var(--aqua);
+}
+
+.hlOrchid {
+  --hl: var(--orchid);
+}
+
+.hlRed {
+  --hl: var(--vermilion);
+  color: var(--paper) !important;
+}
+
+.hlSaffron {
+  --hl: var(--saffron);
+}
+
+.introSide {
+  font-size: var(--step-1);
+}
+
+.introSide p {
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.15;
+}
+
+.arrowLink {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+  transition: gap 0.4s var(--ease-out);
+}
+
+.arrowLink:hover {
+  gap: 18px;
+  color: var(--ultramarine);
+}
+
+/* ——— works ——— */
+.works {
+  scroll-margin-top: 40px;
+}
+
+.worksHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 32px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.worksTitle {
+  font-size: var(--step-5);
+  letter-spacing: -0.06em;
+}
+
+.worksTitle sup {
+  margin-left: 0.2em;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  vertical-align: top;
+  color: var(--vermilion);
+}
+
+.worksNote {
+  margin: 0;
+  font-size: var(--step-2);
+  font-style: italic;
+}
+
+/* ——— portrait teaser ——— */
+.portrait {
+  display: grid;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  padding-top: clamp(100px, 14vw, 200px);
+}
+
+@media (min-width: 900px) {
+  .portrait {
+    grid-template-columns: 0.85fr 1fr;
+  }
+}
+
+.portraitFigure img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 30px 40px color-mix(in oklab, var(--ink) 30%, transparent));
+}
+
+.kicker {
+  color: var(--vermilion);
+}
+
+.quote {
+  margin: 0 0 32px;
+  font-size: var(--step-3);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.quote em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ultramarine);
+}

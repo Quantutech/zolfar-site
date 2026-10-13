@@ -1,0 +1,219 @@
+/* The round button is a direct quote of her old site: a white disc with "menu +". */
+.button {
+  display: grid;
+  place-content: center;
+  grid-auto-flow: column;
+  gap: 4px;
+  width: var(--menu-w);
+  height: var(--menu-w);
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font-size: clamp(0.85rem, 0.45rem + 0.55vw, 1.4rem);
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--ink) 45%, transparent);
+  transition:
+    transform 0.5s var(--ease-paper),
+    background 0.3s;
+}
+
+.button:hover {
+  transform: rotate(-10deg) scale(1.06);
+  background: var(--orchid);
+}
+
+.sign {
+  display: inline-block;
+  transition: transform 0.5s var(--ease-paper);
+}
+
+.button:hover .sign {
+  transform: rotate(180deg);
+}
+
+/* ——— the sheet ——— */
+.sheet {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.sheet::backdrop {
+  background: transparent;
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  padding: calc(var(--header-h) + 24px) var(--gutter) 28px;
+  background:
+    radial-gradient(circle at 20% 30%, var(--vermilion) 0 1.2px, transparent 1.6px) 0 0 / 43px 37px,
+    radial-gradient(circle at 70% 60%, var(--vermilion) 0 0.9px, transparent 1.3px) 0 0 / 29px 31px,
+    var(--lilac);
+  --origin: calc(100% - var(--gutter) - var(--menu-w) / 2) calc(18px + var(--menu-w) / 2);
+  clip-path: circle(0 at var(--origin));
+  transition: clip-path 0.8s var(--ease-out);
+}
+
+.sheet[open] .inner {
+  clip-path: circle(150% at var(--origin));
+}
+
+@starting-style {
+  .sheet[open] .inner {
+    clip-path: circle(0 at var(--origin));
+  }
+}
+
+.lattice {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lattice path {
+  fill: none;
+  stroke: color-mix(in oklab, var(--ink) 18%, transparent);
+  stroke-width: 0.6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.sheet[open] .lattice path {
+  animation: draw 1.4s var(--ease-out) 0.25s forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.nav {
+  position: relative;
+  align-self: center;
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: clamp(14px, 2vw, 28px);
+  padding: 0.05em 0;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(40px) rotate(-2deg);
+}
+
+.sheet[open] .link {
+  animation: rise 0.8s var(--ease-paper) calc(0.25s + var(--i) * 0.09s) forwards;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.diamond {
+  grid-row: span 2;
+  width: clamp(14px, 2.4vw, 32px);
+  aspect-ratio: 1 / 1.418;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--ink);
+  transition:
+    background 0.3s,
+    transform 0.5s var(--ease-paper);
+}
+
+.label {
+  font-size: clamp(3.4rem, 1.5rem + 10vw, 9.5rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  transition:
+    letter-spacing 0.5s var(--ease-out),
+    color 0.3s;
+}
+
+.note {
+  grid-column: 2;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.3s,
+    transform 0.4s var(--ease-out);
+}
+
+.link:hover .label,
+.link:focus-visible .label {
+  letter-spacing: -0.01em;
+  color: var(--ultramarine);
+}
+
+.link:hover .diamond,
+.link[aria-current="page"] .diamond {
+  background: var(--vermilion);
+  transform: rotate(90deg);
+}
+
+.link:hover .note,
+.link:focus-visible .note {
+  opacity: 1;
+  transform: none;
+}
+
+.foot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.foot p {
+  margin: 0;
+}
+
+.mark {
+  width: 28px;
+}
+
+.salam {
+  margin-left: auto !important;
+  font-size: var(--step-3);
+  color: var(--gold);
+  line-height: 1;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: var(--gutter);
+  z-index: 2;
+}
+
+

@@ -1,0 +1,37 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cursor[data-on="true"] {
+  opacity: 1;
+}
+
+.shape {
+  position: absolute;
+  width: 14px;
+  height: 20px;
+  margin: -10px 0 0 -7px;
+  background: var(--vermilion);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  transition:
+    transform 0.35s var(--ease-paper),
+    background 0.3s;
+  mix-blend-mode: multiply;
+}
+
+.cursor[data-hot="true"] .shape {
+  transform: scale(2.6) rotate(90deg);
+  background: var(--orchid);
+}
+
+@media (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}

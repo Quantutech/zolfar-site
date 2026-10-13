@@ -1,0 +1,34 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px var(--gutter);
+  pointer-events: none;
+}
+
+.header > * {
+  pointer-events: auto;
+}
+
+.home {
+  display: block;
+  width: var(--logo-w);
+  color: var(--ink);
+  transition: transform 0.5s var(--ease-paper);
+}
+
+.home:hover {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.logo {
+  width: 100%;
+}
+
+/* fill the outer rhombus with paper so the mark stays legible over scrolling content */
+.logo path:first-of-type {
+  fill: var(--paper);
+}

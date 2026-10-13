@@ -1,0 +1,258 @@
+.project {
+  padding-top: calc(var(--header-h) + 40px);
+}
+
+/* ——— head ——— */
+.head {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding-bottom: clamp(40px, 6vw, 80px);
+}
+
+/* the vertical label of her original pattern tiles */
+.spine {
+  position: absolute;
+  top: 0;
+  left: calc(var(--gutter) * 0.25);
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--ink);
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .spine {
+    display: none;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 0;
+}
+
+.back {
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+}
+
+.back:hover {
+  color: var(--vermilion);
+}
+
+.chip {
+  padding: 4px 10px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.title {
+  font-size: clamp(3.4rem, 1rem + 11vw, 12rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  max-width: 12ch;
+}
+
+.persian {
+  margin: 0;
+  font-size: var(--step-3);
+  font-weight: 800;
+  color: var(--vermilion);
+  text-align: left;
+}
+
+.summary {
+  max-width: 34ch;
+  margin: 8px 0 0;
+  font-size: var(--step-2);
+  font-style: italic;
+  line-height: 1.12;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0;
+  margin: 18px 0 0;
+  border-top: 1.5px solid var(--ink);
+}
+
+.facts div {
+  padding: 12px 16px 14px 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.facts dt {
+  margin-bottom: 4px;
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+@media (min-width: 1000px) {
+  .head {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: end;
+    column-gap: 48px;
+  }
+
+  .meta,
+  .title,
+  .persian {
+    grid-column: 1 / -1;
+  }
+
+  .summary {
+    grid-column: 1;
+  }
+
+  .facts {
+    grid-column: 2;
+    grid-row: span 2;
+    align-self: end;
+  }
+}
+
+/* ——— images ——— */
+.stage {
+  position: relative;
+}
+
+/* ——— text ——— */
+.text {
+  display: grid;
+  gap: clamp(28px, 5vw, 72px);
+  padding-top: clamp(64px, 10vw, 140px);
+}
+
+@media (min-width: 1000px) {
+  .text {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.lead {
+  margin: 0;
+  font-size: var(--step-2);
+  font-weight: 650;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+
+.lead::first-letter {
+  float: left;
+  margin: 0.04em 0.08em 0 0;
+  padding: 0 0.1em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 3.2em;
+  font-weight: 800;
+  line-height: 0.82;
+}
+
+.paragraphs {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.quote {
+  position: relative;
+  margin: 0 0 40px;
+  padding: 26px 26px 22px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-serif), serif;
+  font-size: var(--step-2);
+  font-style: italic;
+  line-height: 1.1;
+  clip-path: polygon(1% 3%, 40% 0, 99% 2%, 100% 60%, 98% 98%, 55% 100%, 2% 97%, 0 40%);
+}
+
+.quote p {
+  margin: 0;
+}
+
+/* ——— pager ——— */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: clamp(80px, 12vw, 160px);
+  padding-top: 24px;
+  border-top: 1.5px solid var(--ink);
+}
+
+.pagerLink {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 18px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.pagerLink:last-child {
+  grid-template-columns: 1fr auto;
+  text-align: right;
+}
+
+.pagerLink:last-child .pagerThumb {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.pagerThumb {
+  grid-row: 1 / span 2;
+  width: clamp(56px, 7vw, 92px);
+  aspect-ratio: 1 / 1.418;
+  overflow: hidden;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--accent);
+  transition: transform 0.5s var(--ease-paper);
+}
+
+.pagerThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pagerLink:hover .pagerThumb {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.pagerDir {
+  align-self: end;
+  opacity: 0.7;
+}
+
+.pagerTitle {
+  align-self: start;
+  font-size: var(--step-2);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pagerLink:hover .pagerTitle {
+  color: var(--ultramarine);
+}
+
+@media (max-width: 640px) {
+  .pagerTitle {
+    font-size: var(--step-1);
+  }
+}
