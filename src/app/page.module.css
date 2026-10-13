@@ -88,9 +88,11 @@
   opacity: 0.8;
 }
 
+/* the label runs vertically like her tile labels; keep the arrow itself upright so it points down */
 .scroll span {
   display: inline-block;
   margin-top: 8px;
+  writing-mode: horizontal-tb;
   animation: bob 1.8s ease-in-out infinite;
 }
 
